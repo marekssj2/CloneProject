@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- FontAwsome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <!-- MEdium Style Editor -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/medium-editor@5.23.2/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@5.23.2/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8"> -->
+
+    <!-- include summernote css/js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald|Mina" rel="stylesheet">
+
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light josefinfont">
+      <a class="navbar-brand" href="{% url 'post_list' %}">HOME</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto">
+          <!-- <li><a class="nav-item nav-link active" href="">Home <span class="sr-only">(current)</span></a></li> -->
+          <li><a class="nav-item nav-link" href="{% url 'about' %}">About</a></li>
+          <li><a class="nav-item nav-link" href="https://www.github.com">Github</a></li>
+          <li><a class="nav-item nav-link" href="https://www.linkedin.com">Linkedng</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a></li>
+
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+          <li><a class="nav-item nav-link" href="{% url 'post_new' %}">New Post</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'post_draft_list' %}">Drafts</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a></li>
+          <li><a class="nav-item nav-link">Welcome: {{user.username}}</a></li>
+          {% else %}
+            <li><a class="nav-item nav-link navbar-right" href="{% url 'login' %}"><span class='glyphicon glyphicon-user'></span>Login</a></li>
+          {% endif %}
+        </ul>
+
+      </div>
+    </nav>
+
+    <!-- CONTENT BLOG -->
+    <div class="content container mt-3">
+      <div class="col-md-12">
+        <div class="blog_posts">
+          {% block body_block %}
+          {% endblock %}
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>

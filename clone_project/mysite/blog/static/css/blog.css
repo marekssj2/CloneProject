@@ -1,0 +1,33 @@
+.josefinfont{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: :1.5em;
+  margin-bottom: 10px;
+}
+
+.oswaldfont{
+  font-family: 'Oswald', sans-serif;
+}
+
+.centerstage{
+  margin-left:auto;
+  margin-right: auto;
+}
+.postdate{
+  text-alogn:center;
+}
+
+.posttitle{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: :3em;
+  text-align: center;
+}
+
+.postcontent{
+  font-family: 'Mina', sans-serif;
+  font-size: 1.5em;
+}
+
+.btn-comment{
+  position: absolute;
+  right:0px;
+}
